@@ -1583,7 +1583,7 @@
   "resolved" "https://registry.npmjs.org/@pixi/constants/-/constants-6.0.4.tgz"
   "version" "6.0.4"
 
-"@pixi/core@6.0.4":
+"@pixi/core@^6.0.0", "@pixi/core@6.0.4":
   "integrity" "sha512-r1ceyAz0z3usUs0uj4u2986vVT2tQixGNin2o9FNhPFDXbN5EaoKHLtrjGBt1iylK/EUH/nfL5zq0SGa/loW0A=="
   "resolved" "https://registry.npmjs.org/@pixi/core/-/core-6.0.4.tgz"
   "version" "6.0.4"
@@ -1634,6 +1634,11 @@
   "version" "6.0.4"
   dependencies:
     "@pixi/core" "6.0.4"
+
+"@pixi/filter-color-overlay@^4.1.5":
+  "integrity" "sha512-hT29sEBkcEzRdNFKlzHvzOJ0nJh2XKuuyiQkgr9IwA6x6GZ5UCX5ybJl7cfr/NKpujvxGIXknQNdPU7MWonJOQ=="
+  "resolved" "https://registry.npmjs.org/@pixi/filter-color-overlay/-/filter-color-overlay-4.1.5.tgz"
+  "version" "4.1.5"
 
 "@pixi/filter-displacement@6.0.4":
   "integrity" "sha512-Oyk/WbzxlN46d/uB5NtPLfEW2G6ob5XRP+mPVd8yhK38m9Y9rKlcH4jJoWB2niQ+ewkdRfZhuIB+JRdhc9eevg=="
@@ -1864,7 +1869,7 @@
   dependencies:
     "@pixi/settings" "6.0.4"
 
-"@pixi/utils@6.0.4":
+"@pixi/utils@^6.0.0", "@pixi/utils@6.0.4":
   "integrity" "sha512-35JTWsAJ8Va0vvtUSQvyOr3kGedGKVuJnHDO89B8C8tSFtMpJYrR44vp1b1p1vOjNak+ulGehZc8LzlCqymViQ=="
   "resolved" "https://registry.npmjs.org/@pixi/utils/-/utils-6.0.4.tgz"
   "version" "6.0.4"
@@ -2198,7 +2203,7 @@
   dependencies:
     "@types/istanbul-lib-report" "*"
 
-"@types/jest@*":
+"@types/jest@*", "@types/jest@^27.0.3":
   "integrity" "sha512-cmmwv9t7gBYt7hNKH5Spu7Kuu/DotGa+Ff+JGRKZ4db5eh8PnKS4LuebJ3YLUoyOyIHraTGyULn23YtEAm0VSg=="
   "resolved" "https://registry.npmjs.org/@types/jest/-/jest-27.0.3.tgz"
   "version" "27.0.3"
@@ -2221,10 +2226,10 @@
   "resolved" "https://registry.npmjs.org/@types/minimatch/-/minimatch-3.0.5.tgz"
   "version" "3.0.5"
 
-"@types/node@*":
-  "integrity" "sha512-+2Iggwg7PxoO5Kyhvsq9VarmPbIelXP070HMImEpbtGCoyWNINQj4wzjbQCXzdHTRXnqufutJb5KAURZANNBAw=="
-  "resolved" "https://registry.npmjs.org/@types/node/-/node-16.11.12.tgz"
-  "version" "16.11.12"
+"@types/node@*", "@types/node@^17.0.5":
+  "integrity" "sha512-w3mrvNXLeDYV1GKTZorGJQivK6XLCoGwpnyJFbJVK/aTBQUxOCaa/GlFAAN3OTDFcb7h5tiFG+YXCO2By+riZw=="
+  "resolved" "https://registry.npmjs.org/@types/node/-/node-17.0.5.tgz"
+  "version" "17.0.5"
 
 "@types/normalize-package-data@^2.4.0":
   "integrity" "sha512-Gj7cI7z+98M282Tqmp2K5EIsoouUEzbBJhQQzDE3jSIRk6r9gsz0oUokqIUR4u1R3dMHo0pDHM7sNOHyhulypw=="
@@ -2251,6 +2256,13 @@
   "resolved" "https://registry.npmjs.org/@types/q/-/q-1.5.5.tgz"
   "version" "1.5.5"
 
+"@types/react-dom@^17.0.11":
+  "integrity" "sha512-f96K3k+24RaLGVu/Y2Ng3e1EbZ8/cVJvypZWd7cy0ofCBaf2lcM46xNhycMZ2xGwbBjRql7hOlZ+e2WlJ5MH3Q=="
+  "resolved" "https://registry.npmjs.org/@types/react-dom/-/react-dom-17.0.11.tgz"
+  "version" "17.0.11"
+  dependencies:
+    "@types/react" "*"
+
 "@types/react-redux@^7.1.20":
   "integrity" "sha512-q42es4c8iIeTgcnB+yJgRTTzftv3eYYvCZOh1Ckn2eX/3o5TdsQYKUWpLoLuGlcY/p+VAhV9IOEZJcWk/vfkXw=="
   "resolved" "https://registry.npmjs.org/@types/react-redux/-/react-redux-7.1.20.tgz"
@@ -2261,10 +2273,10 @@
     "hoist-non-react-statics" "^3.3.0"
     "redux" "^4.0.0"
 
-"@types/react@*":
-  "integrity" "sha512-2FS1oTqBGcH/s0E+CjrCCR9+JMpsu9b69RTFO+40ua43ZqP5MmQ4iUde/dMjWR909KxZwmOQIFq6AV6NjEG5xg=="
-  "resolved" "https://registry.npmjs.org/@types/react/-/react-17.0.37.tgz"
-  "version" "17.0.37"
+"@types/react@*", "@types/react@^17.0.38":
+  "integrity" "sha512-SI92X1IA+FMnP3qM5m4QReluXzhcmovhZnLNm3pyeQlooi02qI7sLiepEYqT678uNiyc25XfCqxREFpy3W7YhQ=="
+  "resolved" "https://registry.npmjs.org/@types/react/-/react-17.0.38.tgz"
+  "version" "17.0.38"
   dependencies:
     "@types/prop-types" "*"
     "@types/scheduler" "*"
@@ -11552,6 +11564,11 @@
   "integrity" "sha1-hnrHTjhkGHsdPUfZlqeOxciDB3c="
   "resolved" "https://registry.npmjs.org/typedarray/-/typedarray-0.0.6.tgz"
   "version" "0.0.6"
+
+"typescript@^3.2.1 || ^4", "typescript@^4.5.4", "typescript@>=2.8.0 || >= 3.2.0-dev || >= 3.3.0-dev || >= 3.4.0-dev || >= 3.5.0-dev || >= 3.6.0-dev || >= 3.6.0-beta || >= 3.7.0-dev || >= 3.7.0-beta":
+  "integrity" "sha512-VgYs2A2QIRuGphtzFV7aQJduJ2gyfTljngLzjpfW9FoYZF6xuw1W0vW9ghCKLfcWrCFxK81CSGRAvS1pn4fIUg=="
+  "resolved" "https://registry.npmjs.org/typescript/-/typescript-4.5.4.tgz"
+  "version" "4.5.4"
 
 "unbox-primitive@^1.0.1":
   "integrity" "sha512-tZU/3NqK3dA5gpE1KtyiJUrEB0lxnGkMFHptJ7q6ewdZ8s12QrODwNbhIJStmJkd1QDXa1NRA8aF2A1zk/Ypyw=="
