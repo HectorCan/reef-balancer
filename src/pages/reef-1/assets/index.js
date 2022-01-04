@@ -4,6 +4,7 @@ import CoralPurple from '../../../assets/images/flora/purple.png';
 import CoralGreen from '../../../assets/images/flora/green.png';
 import CoralRed from '../../../assets/images/flora/red.png';
 import CoralOrange from '../../../assets/images/flora/light-orange.png';
+import TextureCloud from '../../../assets/images/textures/texture-clouds.jpg';
 
 const Corals = {
   Pink: CoralPink,
@@ -15,5 +16,6 @@ const Corals = {
 
 export {
   Water,
+  TextureCloud,
   Corals
 };

@@ -5,7 +5,7 @@ import { Reef } from '../../components/Reef';
 
 import * as PIXI from 'pixi.js';
 
-import { Water, Corals } from './assets';
+import { Water, Corals, TextureCloud } from './assets';
 import { Bubbles } from '../../components/Bubbles';
 
 const screenWidth  = window.innerWidth;
@@ -94,7 +94,7 @@ const ReefOne = () => {
           width={screenWidth}
           height={screenHeight}
           texture={PIXI.Texture.from(
-            'https://cdna.artstation.com/p/assets/images/images/009/070/412/large/alisha-bannister-sarno-alishabs-clouds.jpg?1516950864'
+            TextureCloud
           )}
           ref={displacementRef}
           />
