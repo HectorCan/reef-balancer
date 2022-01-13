@@ -5,7 +5,6 @@ import { Coral } from '../Coral';
 
 class Reef extends React.Component {
   render() {
-    console.log(this.props);
     return (
       <Container filters={this.props.filters}>
         <ColorOverlay colorOverlay={{ color: 0x3e2a06, alpha: 0.7 }}>

@@ -1,12 +1,8 @@
 import { useState, useEffect, useRef } from 'react';
-import { Sprite, Stage } from '@inlet/react-pixi';
-import { Sepia } from '../../components/Filters';
-import { Reef } from '../../components/Reef';
-
+import { Stage } from '@inlet/react-pixi';
 import * as PIXI from 'pixi.js';
 
-import { Water, Corals, TextureCloud } from './assets';
-import { Bubbles } from '../../components/Bubbles';
+import { Corals, TextureCloud, Bubbles, BackgroundWater, Reef } from './assets';
 
 const screenWidth  = window.innerWidth;
 const screenHeight = window.innerHeight;
@@ -55,6 +51,7 @@ const ReefOne = () => {
   const reqRef          = useRef(null);
 
   useEffect(() => {
+    // Efecto de ondas
     const animate = () => {
       displacementRef.current.x += 3;
       displacementRef.current.y += 2;
@@ -79,26 +76,8 @@ const ReefOne = () => {
   return (
     <>
       <Stage width={screenWidth} height={screenHeight}>
-        <Sepia matrix={{enabled: true}} apply={({matrix}) => matrix.sepia() }>
-          <Sprite 
-            texture={new PIXI.Texture.from(Water, {
-              scaleMode: PIXI.SCALE_MODES.LINEAR,
-            })}
-            width={screenWidth}
-            height={screenHeight}
-            filters={filters}
-          />
-        </Sepia>
-
-        <Sprite
-          width={screenWidth}
-          height={screenHeight}
-          texture={PIXI.Texture.from(
-            TextureCloud
-          )}
-          ref={displacementRef}
-          />
-
+        <BackgroundWater screenWidth={screenWidth} screenHeight={screenHeight} filters={filters} />
+        <TextureCloud screenWidth={screenWidth} screenHeight={screenHeight} displacementRef={displacementRef} />
         <Reef filters={filters} corals={corals} />
       </Stage>
       <Bubbles />
