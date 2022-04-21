@@ -2,6 +2,7 @@ import { useState, useEffect, useRef } from 'react';
 import { Stage, Container } from '@inlet/react-pixi';
 import { Boy, LionFish, Net, BackgroundWater, Bubbles, TextureCloud } from './assets'
 import { Movement } from '../../logic/Player/Movement';
+import { BulletCreator, BulletCollition } from '../../logic/Bullet';
 import * as PIXI from 'pixi.js';
 
 const screenWidth = window.innerWidth;
@@ -32,9 +33,10 @@ const Shooter = () => {
 
   const [fishes, setFishes] = useState(mock);
   const [nets, setNets]     = useState([]);
-  const [player, setPlayer] = useState({ x: 950, y: 750, stepX: 0, stepY: 0, direction: 1 });
+  const [player, setPlayer] = useState({ x: screenWidth / 2, y: screenHeight / 3 * 2, stepX: 0, stepY: 0, direction: 1 });
   const [filters, setFilters] = useState([]);
   const [inputs, setInputs]   = useState({});
+  const [canShoot, setCan] = useState(true);
 
   // Wave Effect - PT 1
   const displacementRef    = useRef(null);
@@ -89,7 +91,12 @@ const Shooter = () => {
         return { ...fish, x: Math.abs(x), y: Math.abs(y), stepX, stepY, direction: newDirection};
       });
 
-      setFishes([...updatedFishes]);
+      const caughtFishes = BulletCollition(updatedFishes, nets);
+
+      const newBullets = BulletCreator(currentInputs, nets, { ...player }, delta, canShoot, setCan);
+
+      setNets([...newBullets]);
+      setFishes([...caughtFishes]);
     };
 
     PIXI.Ticker.shared.add(animate, this);
@@ -127,7 +134,7 @@ const Shooter = () => {
       
         <Container filters={filters}>
           {fishes.map((fish, k) => <LionFish key={k} x={fish.x} y={fish.y} direction={fish.direction} />)}
-          
+          {nets.map((bull, k) => <Net key={k} x={bull.x} y={bull.y} />)}
           <Boy x={player.x} y={player.y} direction={player.direction} />
         </Container>
       </Stage>

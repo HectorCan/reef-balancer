@@ -1,6 +1,6 @@
 import { Position } from "../../interfaces/Position";
 
-const velocityY = 5; const velocityX = 5;
+const velocityY = 5; const velocityX = 10;
 
 const w = window.innerWidth;
 const h = window.innerHeight;
