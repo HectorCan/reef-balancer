@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef } from 'react';
 import { Stage, Container } from '@inlet/react-pixi';
-import { Boy, LionFish, Net, BackgroundWater, Bubbles, TextureCloud } from './assets'
+import { Boy, LionFish, Net, BackgroundWater, Bubbles, TextureCloud, Pause} from './assets'
 import { Movement } from '../../logic/Player/Movement';
 import * as PIXI from 'pixi.js';
 
@@ -119,15 +119,16 @@ const Shooter = () => {
     return () => cancelAnimationFrame(reqRef.current);
   }, []);
 
+  //BOTON DE PAUSA
+
   return (
     <div>
       <Stage onKeyDown={keyDown} tabIndex="0" onKeyUp={keyUp} width={screenWidth} height={screenHeight}>
         <BackgroundWater screenWidth={screenWidth} screenHeight={screenHeight} filters={filters} />
         <TextureCloud screenWidth={screenWidth} screenHeight={screenHeight} displacementRef={displacementRef} />
-      
+        <Pause/>
         <Container filters={filters}>
           {fishes.map((fish, k) => <LionFish key={k} x={fish.x} y={fish.y} direction={fish.direction} />)}
-          
           <Boy x={player.x} y={player.y} direction={player.direction} />
         </Container>
       </Stage>
