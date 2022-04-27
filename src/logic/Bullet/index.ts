@@ -1,13 +1,9 @@
 import { Position } from '../../interfaces/Position';
 
-
-const w = window.innerWidth;
-const h = window.innerHeight;
-
 const pressed = (events: any, bullets: Array<Position>, player: Position, delta: number, canCreate: boolean, setCan: (s:boolean) => void) => {
   // Create new Bullet
   if (events.Space && canCreate) {
-    if (bullets.length < 20) {
+    if (bullets.length < 5) {
       setCan(false);
       setTimeout(() => {
         setCan(true);
@@ -17,43 +13,38 @@ const pressed = (events: any, bullets: Array<Position>, player: Position, delta:
     }
   }
 
-  const newBullets = bullets.map((bullet) => {
+  const newBullets: Position[] = [];
+
+  bullets.forEach(bullet => {
     bullet.y = bullet.y - (bullet.stepY * delta);
-    return bullet;
-  });
 
-  return newBullets.filter((bullet) => {
-    if (bullet.y < -100 || bullet.stepY === 0) {
-      return false
+    if (bullet.y > -100) {
+      newBullets.push(bullet)
     }
-
-    return true;
   });
+
+  return newBullets;
 };
 
-const collition = (fishes: Array<any>, bullets: Array<Position>) => {
-  return fishes.map((fish) => {
-    const bondaries = {
-      minX: fish.x - 60,
-      maxX: fish.x + 60,
-      minY: fish.y - 10,
-      maxY: fish.y + 10
-    };
-    
-    bullets.forEach((bullet) => {
-      if (bullet.y > bondaries.minY && bullet.y < bondaries.maxY &&
-        bullet.x > bondaries.minX && bullet.x < bondaries.maxX) {
-          fish.caught = true;
-          fish.stepX = 0;
-          fish.stepY = 0;
-          bullet.stepY = 0;
-      }
-    });
+const collition = (fish: any, bullets: Array<Position>) => {
+  const bondaries = {
+    minX: fish.x - (fish.direction === 1 ? 40 : 120),
+    maxX: fish.x + (fish.direction === 1 ? 70 : -20),
+    minY: fish.y - 40,
+    maxY: fish.y + 60
+  };
 
-    return fish;
-  }).filter((fish) => {
-    return !fish.caught;
+  let bulletCollition = -1;
+
+  bullets.forEach((bullet, key) => {
+    if (bullet.y > bondaries.minY && bullet.y < bondaries.maxY &&
+      bullet.x > bondaries.minX && bullet.x < bondaries.maxX) {
+        bulletCollition = key;
+        return false;
+    }
   });
+
+  return bulletCollition;
 };
 
 export { pressed as BulletCreator, collition as BulletCollition};

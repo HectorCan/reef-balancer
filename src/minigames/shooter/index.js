@@ -18,8 +18,8 @@ function initializeMock(maxFishes = 10) {
     mock.push({
       x: Math.floor(Math.random() * screenWidth - 400 + 200),
       y: Math.floor(Math.random() * 200 ),
-      stepX: (Math.random() * 0.3 + 0.3) * directionX,
-      stepY: (Math.random() * 0.4 + 0.2) * directionY,
+      stepX: (Math.random() * 1 + 0.3) * directionX,
+      stepY: (Math.random() * 1 + 0.2) * directionY,
       caught: false,
       direction: directionX
     });
@@ -29,7 +29,7 @@ function initializeMock(maxFishes = 10) {
 }
 
 const Shooter = () => {
-  const mock = initializeMock(10);
+  const mock = initializeMock(8);
 
   const [fishes, setFishes] = useState(mock);
   const [nets, setNets]     = useState([]);
@@ -41,6 +41,7 @@ const Shooter = () => {
   // Wave Effect - PT 1
   const displacementRef    = useRef(null);
   const reqRef             = useRef(null);
+  const [pls, dont] = useState(false);
 
   const keyDown = (event) => {
     const trigger = { ...inputs };
@@ -58,14 +59,14 @@ const Shooter = () => {
 
   // Game animation
   useEffect(() => {
-    const animate = (delta) => {
+    const animate = async (delta) => {
       // Player movement
-      const currentInputs = { ...inputs };
-      const newMoves = Movement(currentInputs, { ...player }, delta);
-      setPlayer(newMoves);
-
-      // Fishes movement
-      const updatedFishes = fishes.map((fish) => {
+      const currentInputs = inputs;
+      const newMoves = Movement(currentInputs, player, delta);
+      const updatedFishes = [];
+      let newNets = BulletCreator(currentInputs, nets, player, delta, canShoot, setCan);
+      
+      fishes.forEach((fish) => {
         let { stepX, stepY, x, y } = fish;
         
         // check rebound in x
@@ -88,15 +89,18 @@ const Shooter = () => {
           x = x + (-120 * newDirection);
         }
 
-        return { ...fish, x: Math.abs(x), y: Math.abs(y), stepX, stepY, direction: newDirection};
+        const removeNetIndex = BulletCollition(fish, newNets);
+
+        if (removeNetIndex !== -1) {
+          newNets.splice(removeNetIndex, 1);
+        } else {
+          updatedFishes.push({ ...fish, x: Math.abs(x), y: Math.abs(y), stepX, stepY, direction: newDirection });
+        }
       });
 
-      const caughtFishes = BulletCollition(updatedFishes, nets);
-
-      const newBullets = BulletCreator(currentInputs, nets, { ...player }, delta, canShoot, setCan);
-
-      setNets([...newBullets]);
-      setFishes([...caughtFishes]);
+      setPlayer(newMoves);
+      setNets(newNets);
+      setFishes(updatedFishes);
     };
 
     PIXI.Ticker.shared.add(animate, this);
@@ -107,6 +111,7 @@ const Shooter = () => {
   });
 
   // Wave Effect - PT 2
+  /*
   useEffect(() => {
     const animate = () => {
       displacementRef.current.x += 2;
@@ -124,13 +129,13 @@ const Shooter = () => {
     reqRef.current = requestAnimationFrame(animate);
 
     return () => cancelAnimationFrame(reqRef.current);
-  }, []);
+  }, []);*/
 
   return (
     <div>
       <Stage onKeyDown={keyDown} tabIndex="0" onKeyUp={keyUp} width={screenWidth} height={screenHeight}>
         <BackgroundWater screenWidth={screenWidth} screenHeight={screenHeight} filters={filters} />
-        <TextureCloud screenWidth={screenWidth} screenHeight={screenHeight} displacementRef={displacementRef} />
+        {/*<TextureCloud screenWidth={screenWidth} screenHeight={screenHeight} displacementRef={displacementRef} />*/}
       
         <Container filters={filters}>
           {fishes.map((fish, k) => <LionFish key={k} x={fish.x} y={fish.y} direction={fish.direction} />)}
@@ -138,7 +143,7 @@ const Shooter = () => {
           <Boy x={player.x} y={player.y} direction={player.direction} />
         </Container>
       </Stage>
-      <Bubbles />
+      {/*<Bubbles />*/}
     </div>
   );
 };
