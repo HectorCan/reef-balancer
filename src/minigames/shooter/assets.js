@@ -4,6 +4,8 @@ import Net from "../../components/Sprites/Net";
 import BackgroundWater from "../../components/Backgrounds/BackgroundWater";
 import { Bubbles } from "../../components/Bubbles";
 import TextureCloud from '../../components/Sprites/Textures/TextureCloud';
+import Pause from "../../components/Buttons/Pause";
+import Home from "../../components/Buttons/Home";
 
 export {
   LionFish,
@@ -11,5 +13,7 @@ export {
   Net,
   BackgroundWater,
   Bubbles,
-  TextureCloud
+  TextureCloud,
+  Pause,
+  Home
 };
