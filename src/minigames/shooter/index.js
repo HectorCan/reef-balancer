@@ -2,6 +2,7 @@ import { useState, useEffect, useRef } from 'react';
 import { Stage, Container } from '@inlet/react-pixi';
 import { Boy, LionFish, Net, BackgroundWater, Bubbles, TextureCloud, Pause, Home} from './assets'
 import { Movement } from '../../logic/Player/Movement';
+import { BulletCreator, BulletCollition } from '../../logic/Bullet';
 import * as PIXI from 'pixi.js';
 import ReactDOM from 'react-dom';
 
@@ -18,8 +19,8 @@ function initializeMock(maxFishes = 10) {
     mock.push({
       x: Math.floor(Math.random() * screenWidth - 400 + 200),
       y: Math.floor(Math.random() * 200 ),
-      stepX: (Math.random() * 0.3 + 0.3) * directionX,
-      stepY: (Math.random() * 0.4 + 0.2) * directionY,
+      stepX: (Math.random() * 1 + 0.3) * directionX,
+      stepY: (Math.random() * 1 + 0.2) * directionY,
       caught: false,
       direction: directionX
     });
@@ -29,13 +30,14 @@ function initializeMock(maxFishes = 10) {
 }
 
 const Shooter = () => {
-  const mock = initializeMock(10);
+  const mock = initializeMock(8);
 
   const [fishes, setFishes] = useState(mock);
   const [nets, setNets]     = useState([]);
-  const [player, setPlayer] = useState({ x: 950, y: 750, stepX: 0, stepY: 0, direction: 1 });
+  const [player, setPlayer] = useState({ x: screenWidth / 2, y: screenHeight / 3 * 2, stepX: 0, stepY: 0, direction: 1 });
   const [filters, setFilters] = useState([]);
   const [inputs, setInputs]   = useState({});
+  const [canShoot, setCan] = useState(true);
 
   // Wave Effect - PT 1
   const displacementRef    = useRef(null);
@@ -57,14 +59,14 @@ const Shooter = () => {
 
   // Game animation
   useEffect(() => {
-    const animate = (delta) => {
+    const animate = async (delta) => {
       // Player movement
-      const currentInputs = { ...inputs };
-      const newMoves = Movement(currentInputs, { ...player }, delta);
-      setPlayer(newMoves);
-
-      // Fishes movement
-      const updatedFishes = fishes.map((fish) => {
+      const currentInputs = inputs;
+      const newMoves = Movement(currentInputs, player, delta);
+      const updatedFishes = [];
+      let newNets = BulletCreator(currentInputs, nets, player, delta, canShoot, setCan);
+      
+      fishes.forEach((fish) => {
         let { stepX, stepY, x, y } = fish;
         
         // check rebound in x
@@ -87,10 +89,18 @@ const Shooter = () => {
           x = x + (-120 * newDirection);
         }
 
-        return { ...fish, x: Math.abs(x), y: Math.abs(y), stepX, stepY, direction: newDirection};
+        const removeNetIndex = BulletCollition(fish, newNets);
+
+        if (removeNetIndex !== -1) {
+          newNets.splice(removeNetIndex, 1);
+        } else {
+          updatedFishes.push({ ...fish, x: Math.abs(x), y: Math.abs(y), stepX, stepY, direction: newDirection });
+        }
       });
 
-      setFishes([...updatedFishes]);
+      setPlayer(newMoves);
+      setNets(newNets);
+      setFishes(updatedFishes);
     };
 
     PIXI.Ticker.shared.add(animate, this);
@@ -133,6 +143,8 @@ const Shooter = () => {
         {/*ReactDOM.render(Pause, document.getElementById('root'))*/}
         <Container filters={filters}>
           {fishes.map((fish, k) => <LionFish key={k} x={fish.x} y={fish.y} direction={fish.direction} />)}
+
+          {nets.map((bull, k) => <Net key={k} x={bull.x} y={bull.y} />)}
           <Boy x={player.x} y={player.y} direction={player.direction} />
         </Container>
       </Stage>
