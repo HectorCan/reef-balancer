@@ -138,15 +138,15 @@ const Shooter = () => {
       <Stage onKeyDown={keyDown} tabIndex="0" onKeyUp={keyUp} width={screenWidth} height={screenHeight}>
         <BackgroundWater screenWidth={screenWidth} screenHeight={screenHeight} filters={filters} />
         <TextureCloud screenWidth={screenWidth} screenHeight={screenHeight} displacementRef={displacementRef} />
-        {<Pause x={50} y={10}/>}
-        {<Home x={200} y={10} goTo={'/'}/>}
-        {/*ReactDOM.render(Pause, document.getElementById('root'))*/}
         <Container filters={filters}>
           {fishes.map((fish, k) => <LionFish key={k} x={fish.x} y={fish.y} direction={fish.direction} />)}
 
           {nets.map((bull, k) => <Net key={k} x={bull.x} y={bull.y} />)}
           <Boy x={player.x} y={player.y} direction={player.direction} />
         </Container>
+
+        {<Pause x={50} y={10}/>}
+        {<Home x={130} y={10} goTo={'/'}/>}
       </Stage>
       <Bubbles />
     </div>

@@ -1,10 +1,6 @@
-import React, { Component } from 'react';
-import { Sprite, Stage } from '@inlet/react-pixi';
-import { CustomPIXIComponent } from '@inlet/react-pixi';
+import { Sprite } from '@inlet/react-pixi';
 import home from '../../assets/images/buttons/home.png';
 import * as PIXI from 'pixi.js';
-import { DisplayObject } from 'pixi.js';
-import { useNavigate } from "react-router-dom";
 
 const pauseButtonTexture = new PIXI.Texture.from(home);
 
@@ -19,7 +15,7 @@ const Home = (props) => {
         x={props.x}
         y={props.y}
         texture={pauseButtonTexture}
-        scale={0.7}
+        scale={0.42}
         interactive
         buttonMode
         pointerdown={() => navigate(props.goTo)}

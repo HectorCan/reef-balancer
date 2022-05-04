@@ -1,10 +1,8 @@
-import React, { Component } from 'react';
-import { Sprite, Stage } from '@inlet/react-pixi';
-import { CustomPIXIComponent } from '@inlet/react-pixi';
+import React from 'react';
+import { Sprite} from '@inlet/react-pixi';
 import pauseButton from '../../assets/images/buttons/pauseButton.png';
 import playButton from '../../assets/images/buttons/playButtton.png';
 import * as PIXI from 'pixi.js';
-import { DisplayObject } from 'pixi.js';
 
 const pauseButtonTexture = new PIXI.Texture.from(pauseButton);
 const playButtonTexture = new PIXI.Texture.from(playButton);
@@ -22,7 +20,7 @@ const Pause = (props) => {
       x={props.x}
       y={props.y}
       texture={pauseButtonTexture}
-      scale={0.2}
+      scale={0.12}
       interactive
       buttonMode
       pointerdown={() => onButtonDown()}
