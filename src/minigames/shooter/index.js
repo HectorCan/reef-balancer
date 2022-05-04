@@ -41,7 +41,6 @@ const Shooter = () => {
   // Wave Effect - PT 1
   const displacementRef    = useRef(null);
   const reqRef             = useRef(null);
-  const [pls, dont] = useState(false);
 
   const keyDown = (event) => {
     const trigger = { ...inputs };
@@ -111,7 +110,6 @@ const Shooter = () => {
   });
 
   // Wave Effect - PT 2
-  /*
   useEffect(() => {
     const animate = () => {
       displacementRef.current.x += 2;
@@ -129,13 +127,13 @@ const Shooter = () => {
     reqRef.current = requestAnimationFrame(animate);
 
     return () => cancelAnimationFrame(reqRef.current);
-  }, []);*/
+  }, []);
 
   return (
     <div>
       <Stage onKeyDown={keyDown} tabIndex="0" onKeyUp={keyUp} width={screenWidth} height={screenHeight}>
         <BackgroundWater screenWidth={screenWidth} screenHeight={screenHeight} filters={filters} />
-        {/*<TextureCloud screenWidth={screenWidth} screenHeight={screenHeight} displacementRef={displacementRef} />*/}
+        <TextureCloud screenWidth={screenWidth} screenHeight={screenHeight} displacementRef={displacementRef} />
       
         <Container filters={filters}>
           {fishes.map((fish, k) => <LionFish key={k} x={fish.x} y={fish.y} direction={fish.direction} />)}
@@ -143,7 +141,7 @@ const Shooter = () => {
           <Boy x={player.x} y={player.y} direction={player.direction} />
         </Container>
       </Stage>
-      {/*<Bubbles />*/}
+      <Bubbles />
     </div>
   );
 };
