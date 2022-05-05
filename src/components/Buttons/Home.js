@@ -5,7 +5,6 @@ import * as PIXI from 'pixi.js';
 const pauseButtonTexture = new PIXI.Texture.from(home);
 
 const Home = (props) => {
-    const {x, y, texture, goTo, ...additional } = props;
     const navigate = (prop) => {
       window.location.href = prop;
     };

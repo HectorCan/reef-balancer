@@ -8,7 +8,6 @@ const pauseButtonTexture = new PIXI.Texture.from(pauseButton);
 const playButtonTexture = new PIXI.Texture.from(playButton);
 
 const Pause = (props) => {
-  const {x, y, texture, ...additional } = props;
   const [isPlaying, setIsPlaying] = React.useState(true);
   const onButtonDown = () => {
     setIsPlaying(isPlaying => !isPlaying);
@@ -19,7 +18,7 @@ const Pause = (props) => {
     <Sprite
       x={props.x}
       y={props.y}
-      texture={pauseButtonTexture}
+      texture={!isPlaying ? playButtonTexture : pauseButtonTexture}
       scale={0.12}
       interactive
       buttonMode

@@ -4,10 +4,13 @@ import { Boy, LionFish, Net, BackgroundWater, Bubbles, TextureCloud, Pause, Home
 import { Movement } from '../../logic/Player/Movement';
 import { BulletCreator, BulletCollition } from '../../logic/Bullet';
 import * as PIXI from 'pixi.js';
-import ReactDOM from 'react-dom';
+import { Howl, Howler } from 'howler';
+import BgSound1 from '../../assets/music/bg-sea-1.mp3';
 
 const screenWidth = window.innerWidth;
 const screenHeight = window.innerHeight;
+
+let volume = 30; let timeout = null;
 
 function initializeMock(maxFishes = 10) {
   let mock = [];
@@ -28,6 +31,13 @@ function initializeMock(maxFishes = 10) {
 
   return mock;
 }
+
+const Sound = new Howl({
+  src: BgSound1,
+  autoplay: false,
+  loop: true,
+  volume: volume / 100,
+});
 
 const Shooter = () => {
   const mock = initializeMock(8);
@@ -130,7 +140,23 @@ const Shooter = () => {
     return () => cancelAnimationFrame(reqRef.current);
   }, []);
 
-  //BOTON DE PAUSA
+  useEffect(() => {
+    Sound.play();
+
+    return () => {
+      Sound.stop();
+    }
+  }, []);
+
+  const volumeChange = (evt) => {
+    volume = parseInt(evt.target.value);
+
+    clearTimeout(timeout);
+
+    timeout = setTimeout(() => {
+      Howler.volume(volume / 100);
+    }, 1000)
+  };
 
   return (
     <div>
@@ -148,6 +174,9 @@ const Shooter = () => {
         {<Pause x={50} y={10}/>}
         {<Home x={130} y={10} goTo={'/'}/>}
       </Stage>
+      <input type="number" name="volume" min="1" max="100" value={volume} onChange={volumeChange} 
+        style={{position: 'absolute', top: 10, left: 200}}
+      />
       <Bubbles />
     </div>
   );
