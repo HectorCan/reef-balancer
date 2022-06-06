@@ -3,7 +3,7 @@ import { Sprite } from '@inlet/react-pixi';
 
 const Coral = (props) => {
   const navigate = (prop) => {
-    window.location.href += prop;
+    window.location.href += '/' + prop;
   };
 
   return (

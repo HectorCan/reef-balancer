@@ -172,7 +172,7 @@ const Shooter = () => {
         </Container>
 
         {<Pause x={50} y={10}/>}
-        {<Home x={130} y={10} goTo={'/'}/>}
+        {<Home x={130} y={10} goTo={'/reef-balancer'}/>}
       </Stage>
       <input type="number" name="volume" min="1" max="100" value={volume} onChange={volumeChange} 
         style={{position: 'absolute', top: 10, left: 200}}

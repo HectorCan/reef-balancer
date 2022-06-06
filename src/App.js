@@ -10,7 +10,7 @@ import Shooter from './minigames/shooter';
 
 function App() {
   return (
-    <Router>
+    <Router basename={process.env.PUBLIC_URL}>
       <Routes>
         <Route path="/" element={<ReefOne />} />
         <Route path="/shooter" element={<Shooter />} />
