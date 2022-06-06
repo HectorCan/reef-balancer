@@ -1,15 +1,15 @@
 {
   "files": {
     "main.css": "/reef-balancer/static/css/main.61144bb6.chunk.css",
-    "main.js": "/reef-balancer/static/js/main.b9ac3177.chunk.js",
-    "main.js.map": "/reef-balancer/static/js/main.b9ac3177.chunk.js.map",
+    "main.js": "/reef-balancer/static/js/main.0fa199b2.chunk.js",
+    "main.js.map": "/reef-balancer/static/js/main.0fa199b2.chunk.js.map",
     "runtime-main.js": "/reef-balancer/static/js/runtime-main.172d6b23.js",
     "runtime-main.js.map": "/reef-balancer/static/js/runtime-main.172d6b23.js.map",
-    "static/js/2.3a59a27c.chunk.js": "/reef-balancer/static/js/2.3a59a27c.chunk.js",
-    "static/js/2.3a59a27c.chunk.js.map": "/reef-balancer/static/js/2.3a59a27c.chunk.js.map",
+    "static/js/2.e9f451c7.chunk.js": "/reef-balancer/static/js/2.e9f451c7.chunk.js",
+    "static/js/2.e9f451c7.chunk.js.map": "/reef-balancer/static/js/2.e9f451c7.chunk.js.map",
     "index.html": "/reef-balancer/index.html",
     "static/css/main.61144bb6.chunk.css.map": "/reef-balancer/static/css/main.61144bb6.chunk.css.map",
-    "static/js/2.3a59a27c.chunk.js.LICENSE.txt": "/reef-balancer/static/js/2.3a59a27c.chunk.js.LICENSE.txt",
+    "static/js/2.e9f451c7.chunk.js.LICENSE.txt": "/reef-balancer/static/js/2.e9f451c7.chunk.js.LICENSE.txt",
     "static/media/bg-sea-1.8303efed.mp3": "/reef-balancer/static/media/bg-sea-1.8303efed.mp3",
     "static/media/green.3eb5a8d9.png": "/reef-balancer/static/media/green.3eb5a8d9.png",
     "static/media/light-orange.69129bf9.png": "/reef-balancer/static/media/light-orange.69129bf9.png",
@@ -23,8 +23,8 @@
   },
   "entrypoints": [
     "static/js/runtime-main.172d6b23.js",
-    "static/js/2.3a59a27c.chunk.js",
+    "static/js/2.e9f451c7.chunk.js",
     "static/css/main.61144bb6.chunk.css",
-    "static/js/main.b9ac3177.chunk.js"
+    "static/js/main.0fa199b2.chunk.js"
   ]
 }
