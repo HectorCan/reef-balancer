@@ -1,7 +1,7 @@
 {
   "name": "reef-balancer",
   "version": "0.1.0",
-  "homepage": "https://HectorCan.github.io/reef-balancer",
+  "homepage": "https://HectorCan.github.io/",
   "private": true,
   "dependencies": {
     "@inlet/react-pixi": "^6.6.5",
