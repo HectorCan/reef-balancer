@@ -13,9 +13,9 @@ function App() {
   return (
     <Router>
       <Switch>
-        <Route exact path="/" component={ReefOne} />
-        <Route exact path="/shooter" component={Shooter} />
-        <Redirect to="/" />
+        <Route exact path="/reef-balancer" component={ReefOne} />
+        <Route exact path="/reef-balancer/shooter" component={Shooter} />
+        <Redirect to="/reef-balancer" />
       </Switch>
     </Router>
   );

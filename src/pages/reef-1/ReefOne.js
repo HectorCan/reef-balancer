@@ -84,7 +84,7 @@ const ReefOne = () => {
           if (typeof(coral.goTo) == 'string') {
             const str = coral.goTo;
             coral.goTo = () => {
-              history.push(str);
+              history.push('reef-balancer/' + str);
             };
           }
 

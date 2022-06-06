@@ -6,6 +6,7 @@ import { BulletCreator, BulletCollition } from '../../logic/Bullet';
 import * as PIXI from 'pixi.js';
 import { Howl, Howler } from 'howler';
 import BgSound1 from '../../assets/music/bg-sea-1.mp3';
+import { useHistory } from 'react-router-dom';
 
 const screenWidth = window.innerWidth;
 const screenHeight = window.innerHeight;
@@ -41,6 +42,7 @@ const Sound = new Howl({
 
 const Shooter = () => {
   const mock = initializeMock(8);
+  const history = useHistory();
 
   const [fishes, setFishes] = useState(mock);
   const [nets, setNets]     = useState([]);
@@ -172,7 +174,9 @@ const Shooter = () => {
         </Container>
 
         {<Pause x={50} y={10}/>}
-        {<Home x={130} y={10} goTo={'/reef-balancer'}/>}
+        {<Home x={130} y={10} goTo={() => {
+          history.push('/reef-balancer')
+        }}/>}
       </Stage>
       <input type="number" name="volume" min="1" max="100" value={volume} onChange={volumeChange} 
         style={{position: 'absolute', top: 10, left: 200}}

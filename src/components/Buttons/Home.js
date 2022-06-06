@@ -5,9 +5,6 @@ import * as PIXI from 'pixi.js';
 const pauseButtonTexture = new PIXI.Texture.from(home);
 
 const Home = (props) => {
-    const navigate = (prop) => {
-      window.location.href = prop;
-    };
   
     return (
       <Sprite
@@ -17,7 +14,7 @@ const Home = (props) => {
         scale={0.42}
         interactive
         buttonMode
-        pointerdown={() => navigate(props.goTo)}
+        pointerdown={() => props.goTo()}
       />
     );
   }
