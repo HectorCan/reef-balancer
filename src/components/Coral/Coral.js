@@ -2,9 +2,6 @@ import React from 'react';
 import { Sprite } from '@inlet/react-pixi';
 
 const Coral = (props) => {
-  const navigate = (prop) => {
-    window.location.href += '/' + prop;
-  };
 
   return (
     <Sprite
@@ -14,7 +11,7 @@ const Coral = (props) => {
       texture={props.coral.texture}
       interactive
       buttonMode
-      click={() => navigate(props.coral.goTo)}
+      click={() => props.coral.goTo()}
     />
   );
 }

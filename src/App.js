@@ -1,7 +1,8 @@
 import {
   BrowserRouter as Router,
-  Routes,
+  Switch,
   Route,
+  Redirect
 } from 'react-router-dom';
 
 import './index.css';
@@ -10,12 +11,12 @@ import Shooter from './minigames/shooter';
 
 function App() {
   return (
-    <Router basename={process.env.PUBLIC_URL}>
-      <Routes>
-        <Route path="/" element={<ReefOne />} />
-        <Route path="/shooter" element={<Shooter />} />
-        <Route path="*" element={<div>Not Found</div>} />
-      </Routes>
+    <Router>
+      <Switch>
+        <Route exact path="/" component={ReefOne} />
+        <Route exact path="/shooter" component={Shooter} />
+        <Redirect to="/" />
+      </Switch>
     </Router>
   );
 }

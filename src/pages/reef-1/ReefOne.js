@@ -3,6 +3,7 @@ import { Stage } from '@inlet/react-pixi';
 import * as PIXI from 'pixi.js';
 
 import { Corals, TextureCloud, Bubbles, BackgroundWater, Reef } from './assets';
+import { useHistory } from 'react-router-dom';
 
 const screenWidth  = window.innerWidth;
 const screenHeight = window.innerHeight;
@@ -49,6 +50,7 @@ const ReefOne = () => {
   const [filters, setFilters] = useState([]);
   const displacementRef = useRef(null);
   const reqRef          = useRef(null);
+  const history         = useHistory();
 
   useEffect(() => {
     // Efecto de ondas
@@ -78,7 +80,16 @@ const ReefOne = () => {
       <Stage width={screenWidth} height={screenHeight}>
         <BackgroundWater screenWidth={screenWidth} screenHeight={screenHeight} filters={filters} />
         <TextureCloud screenWidth={screenWidth} screenHeight={screenHeight} displacementRef={displacementRef} />
-        <Reef filters={filters} corals={corals} />
+        <Reef filters={filters} corals={corals.map((coral) => {
+          if (typeof(coral.goTo) == 'string') {
+            const str = coral.goTo;
+            coral.goTo = () => {
+              history.push(str);
+            };
+          }
+
+          return coral;
+        })} />
       </Stage>
       <Bubbles />
     </>
