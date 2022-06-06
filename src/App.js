@@ -12,8 +12,8 @@ function App() {
   return (
     <Router>
       <Routes>
-        <Route path="/" element={<ReefOne />} />
-        <Route path="shooter" element={<Shooter />} />
+        <Route path="/reef-balancer" element={<ReefOne />} />
+        <Route path="/reef-balancer/shooter" element={<Shooter />} />
         <Route path="*" element={<div>Not Found</div>} />
       </Routes>
     </Router>
